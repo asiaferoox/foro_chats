@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="alert alert-warning">
+    <h4 class="alert-heading">¿Eliminar "{{ page.title }}"?</h4>
+    <p>Esta acción no se puede deshacer.</p>
+    <hr>
+    <form method="post" class="d-inline">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    </form>
+    <a href="{% url 'pages:detail' page.slug %}" class="btn btn-secondary">Cancelar</a>
+  </div>
+{% endblock %}
+

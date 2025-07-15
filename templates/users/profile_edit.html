@@ -1,0 +1,15 @@
+{# templates/users/profile.html #}
+{% extends 'base.html' %}
+
+{% block title %}Mi Perfil{% endblock %}
+
+{% block content %}
+  <h2>Mi perfil</h2>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Usuario:</strong> {{ user.username }}</li>
+    <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+  </ul>
+  <a href="{% url 'users:profile_edit' %}" class="btn btn-primary mt-3">
+    Editar perfil
+  </a>
+{% endblock %}

@@ -1,0 +1,11 @@
+body {
+  background: #f8f9fa;
+}
+
+.navbar {
+  margin-bottom: 1rem;
+}
+
+.card-text p {
+  white-space: pre-wrap;
+}

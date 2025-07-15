@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block content %}
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2 class="card-title">{{ page.title }}</h2>
+      <p class="text-muted">Por {{ page.author }} el {{ page.created_at|date:"d/m/Y H:i" }}</p>
+      <hr>
+      <div class="card-text">{{ page.content|linebreaks }}</div>
+    </div>
+  </div>
+
+  {% if user == page.author %}
+    <a href="{% url 'pages:update' page.slug %}" class="btn btn-sm btn-warning">Editar</a>
+    <a href="{% url 'pages:delete' page.slug %}" class="btn btn-sm btn-danger">Borrar</a>
+  {% endif %}
+{% endblock %}

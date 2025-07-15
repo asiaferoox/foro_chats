@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Entradas{% endblock %}
+
+{% block content %}
+  <h2 class="mb-4">Entradas</h2>
+
+  {% if page_obj %}
+    <ul class="list-group mb-4">
+      {% for p in page_obj %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>{{ p.title }}</strong><br>
+            <small class="text-muted">{{ p.created_at|date:"d/m/Y" }}</small>
+          </div>
+          <a href="{% url 'pages:detail' p.slug %}" class="btn btn-sm btn-outline-primary">
+            Leer más
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <nav aria-label="Paginación">
+      <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">Anterior</span>
+          </li>
+        {% endif %}
+
+        <li class="page-item disabled">
+          <span class="page-link">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+          </span>
+        </li>
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">Siguiente</span>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+
+  {% else %}
+    <p class="text-muted">No hay páginas aún.</p>
+  {% endif %}
+{% endblock %}
